@@ -43,7 +43,7 @@ func (p *Population) PrintFitest() {
 }
 
 func (p *Population) Survive() {
-	alphaFitness := 0.0
+	alphaFitness := -1000.0
 	// Allow each organism to live
 	for i, o := range p.Organisms {
 		o.CalculateFitness()
