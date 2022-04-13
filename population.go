@@ -2,6 +2,7 @@ package umbrella
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 	"time"
 )
@@ -76,12 +77,12 @@ func (p *Population) Selection() *Population {
 			if i == p.AlphaIndex {
 				continue
 			}
-			compatability := o.Fitness() / p.Organisms[p.AlphaIndex].Fitness()
+			compatability := math.Min(o.Fitness()/p.Organisms[p.AlphaIndex].Fitness(), 1)
 			if o.Fitness() == 0 {
 				// so you're saying there's a chance!
 				compatability = p.MutationRate
 			}
-			if chance(compatability) == true {
+			if chance(compatability) {
 				// fmt.Println("bow chikka bow wow")
 				p2.Organisms = append(p2.Organisms, p.Mate(p.Organisms[p.AlphaIndex], o))
 
